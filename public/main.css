@@ -53,10 +53,19 @@ label {
   width: 100px;
 }
 
-input, textarea {
+input, textarea, select, .form-group {
   float: left;
   margin: 0 0 1em 0;
   width: 80%;
+}
+
+.form-group > input, .form-group > select {
+  float: none;
+  margin: 0;
+}
+
+select, .medium-field {
+  width: 30%;
 }
 
 input[type="submit"] {

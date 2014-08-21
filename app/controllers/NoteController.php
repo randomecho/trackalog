@@ -17,18 +17,22 @@ class NoteController extends BaseController {
 			array(
 				'title' => 'Add note',
 				'item' => $item,
+				'projects' => Project::lists('title', 'id'),
+				'frameworks' => Framework::lists('title', 'id'),
 			)
 		);
 	}
 
 	public function edit($id)
 	{
-		$item = Note::whereId($id)->first();
+		$item = Note::find($id);
 
 		return View::make($this->_view.'edit',
 			array(
 				'title' => 'Edit note',
 				'item' => $item,
+				'projects' => Project::lists('title', 'id'),
+				'frameworks' => Framework::lists('title', 'id'),
 			)
 		);
 	}
@@ -63,6 +67,10 @@ class NoteController extends BaseController {
 					));
 				}
 			}
+			elseif (isset($info['project_id']))
+			{
+				$project = Project::find($info['project_id']);
+			}
 
 			if (trim($info['framework']) != '')
 			{
@@ -74,6 +82,10 @@ class NoteController extends BaseController {
 						'title' => Str::slug($info['framework']),
 					));
 				}
+			}
+			elseif (isset($info['framework_id']))
+			{
+				$framework = Framework::find($info['framework_id']);
 			}
 
 			$item = Note::create(array(
@@ -120,6 +132,40 @@ class NoteController extends BaseController {
 			$item->cost = (int) $info['cost'];
 			$item->reference = $info['reference'];
 
+			if (trim($info['project']) != '')
+			{
+				$project = Project::whereTitle(Str::slug($info['project']))->first();
+
+				if (is_null($project))
+				{
+					$project = Project::create(array(
+						'title' => Str::slug($info['project']),
+					));
+				}
+			}
+			elseif (isset($info['project_id']))
+			{
+				$project = Project::find($info['project_id']);
+			}
+
+			if (trim($info['framework']) != '')
+			{
+				$framework = Framework::whereTitle(Str::slug($info['framework']))->first();
+
+				if (is_null($framework))
+				{
+					$framework = Framework::create(array(
+						'title' => Str::slug($info['framework']),
+					));
+				}
+			}
+			elseif (isset($info['framework_id']))
+			{
+				$framework = Framework::find($info['framework_id'])->first();
+			}
+
+			$item->project()->associate($project);
+			$item->framework()->associate($framework);
 			$item->save();
 
 			Session::flash('message', 'Note has been updated');

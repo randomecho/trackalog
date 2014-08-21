@@ -12,10 +12,24 @@
 {{ Form::text('title', $item->title, array('autofocus', 'required')) }}
 
 {{ Form::label('project', 'Project') }}
-{{ Form::text('project', null, array('required')) }}
+@if (count($projects) > 0)
+	<div class="form-group">
+	{{ Form::select('project_id', $projects, $item->project_id) }} or new
+	{{ Form::text('project', null, array('class' => 'medium-field')) }}
+	</div>
+@else
+	{{ Form::text('projects', null, array('required')) }}
+@endif
 
 {{ Form::label('framework', 'Framework') }}
-{{ Form::text('framework', null, array('required')) }}
+@if (count($frameworks) > 0)
+	<div class="form-group">
+	{{ Form::select('framework_id', $frameworks, $item->framework_id) }} or new
+	{{ Form::text('framework', null, array('class' => 'medium-field')) }}
+	</div>
+@else
+	{{ Form::text('framework', null, array('required')) }}
+@endif
 
 {{ Form::label('description', 'Notes') }}
 {{ Form::textarea('description', $item->description) }}
