@@ -23,7 +23,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'trackavel',
+			'database'  => 'trackalog',
 			'username'  => '',
 			'password'  => '',
 			'charset'   => 'utf8',
@@ -34,7 +34,7 @@ return array(
 		'pgsql' => array(
 			'driver'   => 'pgsql',
 			'host'     => 'localhost',
-			'database' => 'trackavel',
+			'database' => 'trackalog',
 			'username' => '',
 			'password' => '',
 			'charset'  => 'utf8',
