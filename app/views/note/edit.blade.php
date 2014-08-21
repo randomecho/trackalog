@@ -12,10 +12,10 @@
 {{ Form::text('title', $item->title, array('autofocus', 'required')) }}
 
 {{ Form::label('project', 'Project') }}
-{{ Form::text('project', $item->project, array('required')) }}
+{{ Form::text('project', null, array('required')) }}
 
 {{ Form::label('framework', 'Framework') }}
-{{ Form::text('framework', $item->framework, array('required')) }}
+{{ Form::text('framework', null, array('required')) }}
 
 {{ Form::label('description', 'Notes') }}
 {{ Form::textarea('description', $item->description) }}

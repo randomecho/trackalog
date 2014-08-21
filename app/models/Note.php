@@ -16,4 +16,14 @@ class Note extends Eloquent {
 		'reference',
 	);
 
+	public function project()
+	{
+		return $this->belongsTo('Project');
+	}
+
+	public function framework()
+	{
+		return $this->belongsTo('Framework');
+	}
+
 }

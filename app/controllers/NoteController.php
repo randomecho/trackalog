@@ -52,6 +52,30 @@ class NoteController extends BaseController {
 		}
 		else
 		{
+			if (trim($info['project']) != '')
+			{
+				$project = Project::whereTitle(Str::slug($info['project']))->first();
+
+				if (is_null($project))
+				{
+					$project = Project::create(array(
+						'title' => Str::slug($info['project']),
+					));
+				}
+			}
+
+			if (trim($info['framework']) != '')
+			{
+				$framework = Framework::whereTitle(Str::slug($info['framework']))->first();
+
+				if (is_null($framework))
+				{
+					$framework = Framework::create(array(
+						'title' => Str::slug($info['framework']),
+					));
+				}
+			}
+
 			$item = Note::create(array(
 				'title' => $info['title'],
 				'description' => $info['description'],
@@ -61,6 +85,10 @@ class NoteController extends BaseController {
 				'cost' => (int) $info['cost'],
 				'reference' => $info['reference'],
 			));
+
+			$item->project()->associate($project);
+			$item->framework()->associate($framework);
+			$item->save();
 
 			Session::flash('success', 'New note added');
 
