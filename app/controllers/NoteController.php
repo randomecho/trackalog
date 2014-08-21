@@ -58,14 +58,7 @@ class NoteController extends BaseController {
 		{
 			if (trim($info['project']) != '')
 			{
-				$project = Project::whereTitle(Str::slug($info['project']))->first();
-
-				if (is_null($project))
-				{
-					$project = Project::create(array(
-						'title' => Str::slug($info['project']),
-					));
-				}
+				$project = Project::firstOrCreate(array('title' => Str::slug($info['project'])));
 			}
 			elseif (isset($info['project_id']))
 			{
@@ -74,14 +67,7 @@ class NoteController extends BaseController {
 
 			if (trim($info['framework']) != '')
 			{
-				$framework = Framework::whereTitle(Str::slug($info['framework']))->first();
-
-				if (is_null($framework))
-				{
-					$framework = Framework::create(array(
-						'title' => Str::slug($info['framework']),
-					));
-				}
+				$framework = Framework::firstOrCreate(array('title' => Str::slug($info['framework'])));
 			}
 			elseif (isset($info['framework_id']))
 			{
@@ -134,14 +120,7 @@ class NoteController extends BaseController {
 
 			if (trim($info['project']) != '')
 			{
-				$project = Project::whereTitle(Str::slug($info['project']))->first();
-
-				if (is_null($project))
-				{
-					$project = Project::create(array(
-						'title' => Str::slug($info['project']),
-					));
-				}
+				$project = Project::firstOrCreate(array('title' => Str::slug($info['project'])));
 			}
 			elseif (isset($info['project_id']))
 			{
@@ -150,14 +129,7 @@ class NoteController extends BaseController {
 
 			if (trim($info['framework']) != '')
 			{
-				$framework = Framework::whereTitle(Str::slug($info['framework']))->first();
-
-				if (is_null($framework))
-				{
-					$framework = Framework::create(array(
-						'title' => Str::slug($info['framework']),
-					));
-				}
+				$framework = Framework::firstOrCreate(array('title' => Str::slug($info['framework'])));
 			}
 			elseif (isset($info['framework_id']))
 			{
