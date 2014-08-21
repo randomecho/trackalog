@@ -72,3 +72,9 @@ input[type="submit"] {
   clear: both;
   width: auto;
 }
+
+.alert {  
+  border: 1px dotted #f00;
+  margin: 1em;
+  padding: 1em;
+}

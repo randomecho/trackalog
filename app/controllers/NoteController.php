@@ -44,10 +44,38 @@ class NoteController extends BaseController {
 
 	public function store()
 	{
+		$info = Input::all();
+
 		$rules = array(
 			'title' => 'required',
 		);
-		$info = Input::all();
+
+		if (trim($info['project']) != '')
+		{
+			$project = Project::firstOrCreate(array('title' => Str::slug($info['project'])));
+		}
+		elseif (isset($info['project_id']))
+		{
+			$project = Project::find($info['project_id']);
+		}
+		else
+		{
+			$rules['project'] = 'required';
+		}
+
+		if (trim($info['framework']) != '')
+		{
+			$framework = Framework::firstOrCreate(array('title' => Str::slug($info['framework'])));
+		}
+		elseif (isset($info['framework_id']))
+		{
+			$framework = Framework::find($info['framework_id']);
+		}
+		else
+		{
+			$rules['framework'] = 'required';
+		}
+
 		$validation = Validator::make($info, $rules);
 
 		if ($validation->fails())
@@ -56,24 +84,6 @@ class NoteController extends BaseController {
 		}
 		else
 		{
-			if (trim($info['project']) != '')
-			{
-				$project = Project::firstOrCreate(array('title' => Str::slug($info['project'])));
-			}
-			elseif (isset($info['project_id']))
-			{
-				$project = Project::find($info['project_id']);
-			}
-
-			if (trim($info['framework']) != '')
-			{
-				$framework = Framework::firstOrCreate(array('title' => Str::slug($info['framework'])));
-			}
-			elseif (isset($info['framework_id']))
-			{
-				$framework = Framework::find($info['framework_id']);
-			}
-
 			$item = Note::create(array(
 				'title' => $info['title'],
 				'description' => $info['description'],
@@ -96,10 +106,38 @@ class NoteController extends BaseController {
 
 	public function update()
 	{
+		$info = Input::all();
+
 		$rules = array(
 			'title' => 'required',
 		);
-		$info = Input::all();
+
+		if (trim($info['project']) != '')
+		{
+			$project = Project::firstOrCreate(array('title' => Str::slug($info['project'])));
+		}
+		elseif (isset($info['project_id']))
+		{
+			$project = Project::find($info['project_id']);
+		}
+		else
+		{
+			$rules['project'] = 'required';
+		}
+
+		if (trim($info['framework']) != '')
+		{
+			$framework = Framework::firstOrCreate(array('title' => Str::slug($info['framework'])));
+		}
+		elseif (isset($info['framework_id']))
+		{
+			$framework = Framework::find($info['framework_id']);
+		}
+		else
+		{
+			$rules['framework'] = 'required';
+		}
+
 		$validation = Validator::make($info, $rules);
 
 		if ($validation->fails())
