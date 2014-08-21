@@ -1,0 +1,65 @@
+body, h1, h2, h3, p, ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #fff;
+  color: #000;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  padding: 1em;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1, h2, h3, p {
+  margin: 0 0 1em 0;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+h2 {
+  font-size: 1.3em;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+li {
+  margin: 0 0 0.5em 0;
+}
+
+ul, ol {
+  margin: 0 0 1em 2em;
+}
+
+header {
+}
+
+footer {
+}
+
+label {
+  clear: left;
+  float: left;
+  margin: 0 0.5em 0 0;
+  text-align: right;
+  width: 100px;
+}
+
+input, textarea {
+  float: left;
+  margin: 0 0 1em 0;
+  width: 80%;
+}
+
+input[type="submit"] {
+  clear: both;
+  width: auto;
+}
