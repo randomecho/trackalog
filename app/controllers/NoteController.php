@@ -6,7 +6,14 @@ class NoteController extends BaseController {
 
 	public function index()
 	{
-		return View::make('hello');
+		$items = Note::orderBy('id', 'desc')->get();
+
+		return View::make($this->_view.'list',
+			array(
+				'title' => 'Notes',
+				'items' => $items,
+			)
+		);
 	}
 
 	public function create()

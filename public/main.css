@@ -39,10 +39,19 @@ ul, ol {
   margin: 0 0 1em 2em;
 }
 
-header {
+table {
+  border: none;
+  border-collapse: collapse;
+  margin: 0 auto;
+  width: 90%;
 }
 
-footer {
+tr:nth-child(2n) {
+  background: #f0f0f0;
+}
+
+td {
+  padding: 0.1em 0.5em;
 }
 
 label {

@@ -10,4 +10,9 @@ class Project extends Eloquent {
 		'title',
 	);
 
+	public static function note()
+	{
+		return $this->hasMany('Note');
+	}
+
 }
