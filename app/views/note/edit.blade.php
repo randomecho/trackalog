@@ -49,6 +49,12 @@
 {{ Form::label('reference', 'Reference') }}
 {{ Form::text('reference', $item->reference) }}
 
+{{ Form::label('when_issued', 'Issued') }}
+{{ Form::text('when_issued', $item->when_issued) }}
+
+{{ Form::label('when_paid', 'Paid on') }}
+{{ Form::text('when_paid', $item->when_paid) }}
+
 {{ Form::submit('Save') }}
 
 {{ Form::close() }}

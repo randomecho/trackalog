@@ -6,7 +6,7 @@ class NoteController extends BaseController {
 
 	public function index()
 	{
-		$items = Note::orderBy('id', 'desc')->get();
+		$items = Note::orderBy('id', 'desc')->limit(50)->get();
 
 		return View::make($this->_view.'list',
 			array(
@@ -99,6 +99,9 @@ class NoteController extends BaseController {
 				'minutes' => (int) $info['minutes'],
 				'cost' => (int) $info['cost'],
 				'reference' => $info['reference'],
+				'when_created' => date("Y-m-d H:i:s"),
+				'when_issued' => $info['when_issued'],
+				'when_paid' => $info['when_paid'],
 			));
 
 			$item->project()->associate($project);
@@ -162,6 +165,9 @@ class NoteController extends BaseController {
 			$item->minutes = (int) $info['minutes'];
 			$item->cost = (int) $info['cost'];
 			$item->reference = $info['reference'];
+			$item->when_touched = date("Y-m-d H:i:s");
+			$item->when_issued = $info['when_issued'];
+			$item->when_paid = $info['when_paid'];
 
 			if (trim($info['project']) != '')
 			{

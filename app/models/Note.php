@@ -14,6 +14,10 @@ class Note extends Eloquent {
 		'minutes',
 		'cost',
 		'reference',
+		'when_created',
+		'when_updated',
+		'when_issued',
+		'when_paid',
 	);
 
 	public function project()
