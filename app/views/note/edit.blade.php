@@ -18,7 +18,7 @@
 	{{ Form::text('project', null, array('class' => 'medium-field')) }}
 	</div>
 @else
-	{{ Form::text('projects', null, array('required')) }}
+	{{ Form::text('project', null, array('required')) }}
 @endif
 
 {{ Form::label('framework', 'Framework') }}
