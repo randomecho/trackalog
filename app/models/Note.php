@@ -14,11 +14,22 @@ class Note extends Eloquent {
 		'minutes',
 		'cost',
 		'reference',
+		'parent_id',
 		'when_created',
 		'when_updated',
 		'when_issued',
 		'when_paid',
 	);
+
+	public function master()
+	{
+		return $this->belongsTo('Note', 'parent_id', 'id');
+	}
+
+	public function continued()
+	{
+		return $this->hasMany('Note');
+	}
 
 	public function project()
 	{

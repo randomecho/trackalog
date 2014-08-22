@@ -31,6 +31,11 @@
 	{{ Form::text('framework', null, array('required')) }}
 @endif
 
+{{ Form::label('parent_id', 'Continuing') }}
+@if (isset($masters) && count($masters) > 0)
+	{{ Form::select('parent_id', $masters, $item->parent_id) }}
+@endif
+
 {{ Form::label('description', 'Notes') }}
 {{ Form::textarea('description', $item->description) }}
 

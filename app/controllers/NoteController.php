@@ -33,11 +33,15 @@ class NoteController extends BaseController {
 	public function edit($id)
 	{
 		$item = Note::find($id);
+		$masters = Note::whereProjectId($item->project_id)->where('parent_id', '=', 0)->where('id', '<>', $item->id)
+								->orderBy('id', 'desc')->get()->lists('title', 'id');
+		$masters += array('0' => 'new note, not continuing');
 
 		return View::make($this->_view.'edit',
 			array(
 				'title' => 'Edit note',
 				'item' => $item,
+				'masters' => $masters,
 				'projects' => Project::lists('title', 'id'),
 				'frameworks' => Framework::lists('title', 'id'),
 			)
@@ -165,28 +169,10 @@ class NoteController extends BaseController {
 			$item->minutes = (int) $info['minutes'];
 			$item->cost = (int) $info['cost'];
 			$item->reference = $info['reference'];
+			$item->parent_id = $info['parent_id'];
 			$item->when_touched = date("Y-m-d H:i:s");
 			$item->when_issued = $info['when_issued'];
 			$item->when_paid = $info['when_paid'];
-
-			if (trim($info['project']) != '')
-			{
-				$project = Project::firstOrCreate(array('title' => Str::slug($info['project'])));
-			}
-			elseif (isset($info['project_id']))
-			{
-				$project = Project::find($info['project_id']);
-			}
-
-			if (trim($info['framework']) != '')
-			{
-				$framework = Framework::firstOrCreate(array('title' => Str::slug($info['framework'])));
-			}
-			elseif (isset($info['framework_id']))
-			{
-				$framework = Framework::find($info['framework_id'])->first();
-			}
-
 			$item->project()->associate($project);
 			$item->framework()->associate($framework);
 			$item->save();
