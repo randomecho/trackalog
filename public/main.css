@@ -77,9 +77,33 @@ select, .medium-field {
   width: 30%;
 }
 
+.huge-field { 
+  font-size: 2em;
+  width: 5em;
+}
+
 input[type="submit"] {
   clear: both;
   width: auto;
+}
+
+.row {
+  clear: both;
+  overflow: hidden;
+}
+
+.half {
+  float: left;
+  width: 50%;
+}
+
+.third {
+  float: left;
+  width: 32%;
+}
+
+.third > input {
+  width: 50%;
 }
 
 .alert {  
