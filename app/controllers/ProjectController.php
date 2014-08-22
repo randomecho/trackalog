@@ -4,6 +4,18 @@ class ProjectController extends BaseController {
 
 	private $_view = 'project/';
 
+	public function index()
+	{
+		$items = Project::orderBy('title', 'asc')->get();
+
+		return View::make($this->_view.'index',
+			array(
+				'title' => 'Projects used',
+				'items' => $items,
+			)
+		);
+	}
+
 	public function show($slug)
 	{
 		$project = Project::whereTitle($slug)->first();
