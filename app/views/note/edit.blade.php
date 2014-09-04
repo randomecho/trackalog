@@ -31,8 +31,8 @@
 	{{ Form::text('framework', null, array('required')) }}
 @endif
 
-{{ Form::label('parent_id', 'Continuing') }}
 @if (isset($masters) && count($masters) > 0)
+	{{ Form::label('parent_id', 'Continuing') }}
 	{{ Form::select('parent_id', $masters, $item->parent_id) }}
 @endif
 

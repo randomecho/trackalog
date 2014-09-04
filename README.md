@@ -19,5 +19,5 @@ Then fire up a browser and it should be good to start with at:
 
 ## License
 
-[BSD 3-Clause License](http://opensource.org/licenses/BSD-3-Clause).
+[BSD 3-Clause License](http://opensource.org/licenses/BSD-3-Clause)
 
