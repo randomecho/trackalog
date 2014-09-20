@@ -41,4 +41,35 @@ class Note extends Eloquent {
 		return $this->belongsTo('Framework');
 	}
 
+	/**
+	 * Remove duplicate line items
+	 *
+	 * Creates alpha sorted list based on newline character, skipping duplicates
+	 *
+	 * @param  string  bunch of lines
+	 * @return string
+	 */
+	public function deduplicate_lines($text)
+	{
+		$jumble_lines = explode("\n", $text);
+		asort($jumble_lines);
+		$clean_lines = '';
+		$tracked = array();
+
+		foreach ($jumble_lines as $raw_line)
+		{
+			if (trim($raw_line) != '')
+			{
+				$raw_line = str_replace("\\", '/', $raw_line);
+
+				if ( ! isset($tracked[$raw_line]))
+				{
+					$tracked[$raw_line] = true;
+					$clean_lines .= $raw_line. "\n";
+				}
+			}
+		}
+
+		return trim($clean_lines);
+	}
 }

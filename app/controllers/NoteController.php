@@ -99,7 +99,6 @@ class NoteController extends BaseController {
 				'title' => $info['title'],
 				'description' => $info['description'],
 				'commits' => $info['commits'],
-				'files' => $info['files'],
 				'minutes' => (int) $info['minutes'],
 				'cost' => (int) $info['cost'],
 				'reference' => $info['reference'],
@@ -108,6 +107,7 @@ class NoteController extends BaseController {
 				'when_paid' => $info['when_paid'],
 			));
 
+			$item['files'] = $item->deduplicate_lines($info['files']);
 			$item->project()->associate($project);
 			$item->framework()->associate($framework);
 			$item->save();
@@ -165,7 +165,7 @@ class NoteController extends BaseController {
 			$item->title = $info['title'];
 			$item->description = $info['description'];
 			$item->commits = $info['commits'];
-			$item->files = $info['files'];
+			$item->files = $item->deduplicate_lines($info['files']);
 			$item->minutes = (int) $info['minutes'];
 			$item->cost = (int) $info['cost'];
 			$item->reference = $info['reference'];
