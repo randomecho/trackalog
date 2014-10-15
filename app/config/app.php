@@ -2,6 +2,9 @@
 
 return array(
 
+	'log_commits' => '', // Location of where you dump out commit messages
+	'log_files'   => '', // Location of list of files affected by above commits
+
 	/*
 	|--------------------------------------------------------------------------
 	| Application Debug Mode
