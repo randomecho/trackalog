@@ -20,13 +20,13 @@ class NoteController extends BaseController {
 	{
 		$item = new Note;
 
-		if (Config::get('app.log_commits') != '' && file_exists(Config::get('app.log_commits')))
+		if (Config::get('app.log_commits') != '' && file_exists(Config::get('app.log_commits')) && filesize(Config::get('app.log_commits')) > 0)
 		{
 			$log_commits = fopen(Config::get('app.log_commits'), 'r');
 			$item->commits = fread($log_commits, filesize(Config::get('app.log_commits')));
 		}
 
-		if (Config::get('app.log_files') !='' && file_exists(Config::get('app.log_files')))
+		if (Config::get('app.log_files') !='' && file_exists(Config::get('app.log_files')) && filesize(Config::get('app.log_files')) > 0)
 		{
 			$log_files = fopen(Config::get('app.log_files'), 'r');
 			$item->files = fread($log_files, filesize(Config::get('app.log_files')));
